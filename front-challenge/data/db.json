@@ -1,0 +1,96 @@
+{
+    "data":[
+        {
+            "id": 1,
+            "logo":"../imgs/green-logo.png",
+            "submitTime": "5h ago",
+            "jobType": "Full Time",
+            "jobBreif": "Senior Software Engineer",
+            "firmName": "Scoot",
+            "firmCountry": "United Kingdom",
+            "jobDescription": "lorem lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of",
+            "Requirements": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "RequirementsArray": ["lots of talk lots of talk", "lots of talk lots of talk", "lots of talk lots of talk","lots of talk lots of talk"],
+            "WhatYouWillDo": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "WhatYouWillDoArray":["lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk"],
+            "companyURL":"https://www.trip.com/flights/airline-tr/scoot/?locale=en_xx&curr=usd&allianceid=742331&sid=1621987&ppcid=ckid-12462052383_adid-83700738435573_akid-kwd-83701531949460_adgid-1339207573890472&utm_source=bing&utm_medium=cpc&utm_campaign=603703019&msclkid=6527f907e2371944f75c91a676700d43"
+        },
+        {
+            "id":2,
+            "logo":"/imgs/colored-logo-.png",
+            "submitTime": "20h ago",
+            "jobType": "Part Time",
+            "jobBreif": "Haskell and PureScript Dev",
+            "firmName": "Blogr",
+            "firmCountry": "United Status",
+            "jobDescription": "lorem lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of",
+            "Requirements": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "RequirementsArray": ["lots of talk lots of talk", "lots of talk lots of talk", "lots of talk lots of talk","lots of talk lots of talk"],
+            "WhatYouWillDo": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "WhatYouWillDoArray":["lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk"],
+            "companyURL":"https://r.search.yahoo.com/_ylt=AwrFE71Sl6FotVwFuw9XNyoA;_ylu=Y29sbwNiZjEEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1756630098/RO=10/RU=https%3a%2f%2fwww.blogger.com%2fabout%2f%3fbpli%253D1/RK=2/RS=0O3Jpxo9CeN9eJccUkenPex1GbM-"
+        },
+        {
+            "id": 3,
+            "logo": "/imgs/black-and-white.png",
+            "submitTime": "1d ago",
+            "jobType": "Part Time",
+            "jobBreif": "Midlevel Back End Engineer",
+            "firmName": "Vector",
+            "firmCountry": "Russia",
+            "jobDescription": "lorem lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of",
+            "Requirements": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "RequirementsArray": ["lots of talk lots of talk", "lots of talk lots of talk", "lots of talk lots of talk","lots of talk lots of talk"],
+            "WhatYouWillDo": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "WhatYouWillDoArray":["lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk"],
+            "companyURL":"https://r.search.yahoo.com/_ylt=AwrFE71Sl6FotVwFuw9XNyoA;_ylu=Y29sbwNiZjEEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1756630098/RO=10/RU=https%3a%2f%2fwww.blogger.com%2fabout%2f%3fbpli%253D1/RK=2/RS=0O3Jpxo9CeN9eJccUkenPex1GbM-"
+        },
+        {
+            "id": 4,
+            "logo": "../imgs/CG-logo.png",
+            "submitTime": "2d ago",
+            "jobType": "Full Time",
+            "jobBreif": "Senior Application Engineer",
+            "firmName": "Office Lite",
+            "firmCountry": "Japan",
+            "jobDescription": "lorem lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of",
+            "Requirements": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "RequirementsArray": ["lots of talk lots of talk", "lots of talk lots of talk", "lots of talk lots of talk","lots of talk lots of talk"],
+            "WhatYouWillDo": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "WhatYouWillDoArray":["lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk"],
+            "companyURL":"https://r.search.yahoo.com/_ylt=AwrFE71Sl6FotVwFuw9XNyoA;_ylu=Y29sbwNiZjEEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1756630098/RO=10/RU=https%3a%2f%2fwww.blogger.com%2fabout%2f%3fbpli%253D1/RK=2/RS=0O3Jpxo9CeN9eJccUkenPex1GbM-"
+        },
+        {
+            "id": 5,
+            "logo": "../imgs/roaster-logo.png",
+            "submitTime": "2d ago",
+            "jobType": "Part Time",
+            "jobBreif": "Remote DevOps Engineer",
+            "firmName": "Pod",
+            "firmCountry": "Thailand",
+            "jobDescription": "lorem lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of",
+            "Requirements": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "RequirementsArray": ["lots of talk lots of talk", "lots of talk lots of talk", "lots of talk lots of talk","lots of talk lots of talk"],
+            "WhatYouWillDo": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "WhatYouWillDoArray":["lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk"],
+            "companyURL":"https://r.search.yahoo.com/_ylt=AwrFE71Sl6FotVwFuw9XNyoA;_ylu=Y29sbwNiZjEEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1756630098/RO=10/RU=https%3a%2f%2fwww.blogger.com%2fabout%2f%3fbpli%253D1/RK=2/RS=0O3Jpxo9CeN9eJccUkenPex1GbM-"
+        },
+        {
+            "id": 6,
+            "logo": "../imgs/arrow-logo.png",
+            "submitTime": "4d ago",
+            "jobType": "Part Time",
+            "jobBreif": "Desktop Support Manager",
+            "firmName": "Creative",
+            "firmCountry": "Germany",
+            "jobDescription": "lorem lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of",
+            "Requirements": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "RequirementsArray": ["lots of talk lots of talk", "lots of talk lots of talk", "lots of talk lots of talk","lots of talk lots of talk"],
+            "WhatYouWillDo": "lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk lots of talk",
+            "WhatYouWillDoArray":["lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk","lots of talk lots of talk"],
+            "companyURL":"https://r.search.yahoo.com/_ylt=AwrFE71Sl6FotVwFuw9XNyoA;_ylu=Y29sbwNiZjEEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1756630098/RO=10/RU=https%3a%2f%2fwww.blogger.com%2fabout%2f%3fbpli%253D1/RK=2/RS=0O3Jpxo9CeN9eJccUkenPex1GbM-"
+        }
+    ]
+
+
+}
