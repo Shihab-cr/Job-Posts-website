@@ -22,7 +22,7 @@ const Post = () => {
 
     const selectedPost = ()=>{
         return data?.find((item)=>{
-            return item.id === +id;
+            return item.id === id;
         })
     }
     useEffect(()=>{
