@@ -12,7 +12,7 @@ const JobPosts = ({generalFilter, setGeneralFilter, countryFilter, setCountryFil
 
     useEffect(()=>{
         setIsLoading(true);
-        fetch('http://localhost:8000/data')
+        fetch('/db.json')
         .then(res=>{
             if(!res.ok){
                 throw Error("could not load data from db check PostCard");

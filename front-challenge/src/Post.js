@@ -17,7 +17,7 @@ const Post = () => {
     
     const {id} = useParams();
     const [darkMode, setDarkMode] = useState(false);
-    const {data, isLoading, error, refetch} = useFetch(`http://localhost:8000/data`);
+    const {data, isLoading, error, refetch} = useFetch(`/db.json`);
     const [myPost, setMyPost] = useState(null);
 
     const selectedPost = ()=>{
