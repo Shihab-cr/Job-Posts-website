@@ -1,109 +1,122 @@
-import {useState, useEffect} from 'react'
-import PostCard from './PostCard';
+// JobPosts.jsx
+import React, { useState, useEffect, useMemo } from "react";
+import PostCard from "./PostCard";
 
-const JobPosts = ({generalFilter, setGeneralFilter, countryFilter, setCountryFilter, isSearching, setIsSearching, isFiltered}) => {
-    const [data, setData] = useState([]);
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [filteredData, setFilteredData] = useState(data);
-    const [searchData, setSearchData] = useState(null);
-    const [displayData, setDisplayData] = useState(null);
+const JobPosts = ({
+  generalFilter = "",
+  setGeneralFilter,
+  countryFilter = "",
+  setCountryFilter,
+  isSearching, // currently unused but kept for API compatibility
+  setIsSearching,
+  isFiltered = false,
+}) => {
+  const [rawData, setRawData] = useState(null); // the raw JSON from fetch
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
+  // helper: find first array anywhere inside an object
+  const findFirstArray = (obj) => {
+    if (Array.isArray(obj)) return obj;
+    if (obj && typeof obj === "object") {
+      for (const key of Object.keys(obj)) {
+        const found = findFirstArray(obj[key]);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
 
-    useEffect(()=>{
-        setIsLoading(true);
-        fetch('/db.json')
-        .then(res=>{
-            if(!res.ok){
-                throw Error("could not load data from db check PostCard");
-            }
-            return res.json()
-        })
-        .then(data=>{
-            setData(data);
-            setFilteredData(data);
-            setIsLoading(false);
-        })
-        .catch((err)=>{
-            setError(err.message);
-            setIsLoading(false);
-        })
-    },[])
+  // fetch once
+  useEffect(() => {
+    let cancelled = false;
+    setIsLoading(true);
+    setError(null);
 
-
-    // useEffect(()=>{
-    //     let filtered = data;
-    //     if(!isFiltered){
-    //         filtered = filtered.filter(post=>{
-    //             return(post.jobType.trim().toLowerCase()==="full time");
-    //         })
-    //         // let istrue = isFiltered? filtered.filter((post)=>post.jobType.trim().toLowerCase()==="full time")
-    //     }
-    //     else{
-    //         filtered = data;
-    //     }
-    //     setFilteredData(filtered);
-    // },[isFiltered])
-    
-        
-    useEffect(()=>{
-        // if(isSearching){
-
-            let searchResult = data;
-
-            const generalSearch = generalFilter.trim() !== "";
-            const countrySearch = countryFilter.trim() !== "";
-
-            if(generalSearch){
-                searchResult = searchResult.filter(post=>{
-                    return post.firmName.toLowerCase().includes(generalFilter.toLowerCase())||
-                    post.jobBreif.toLowerCase().includes(generalFilter.toLowerCase());
-                })
-                // setFilteredData(filtered);
-            }
-            if(countrySearch){
-                searchResult = searchResult.filter(post=>{
-                    return( post.firmCountry.toLowerCase().includes(countryFilter.toLowerCase()));
-                })
-                // setFilteredData(filtered);
-            }
-
-            if(!generalSearch && !countrySearch){
-                setSearchData("");
-            }
-            else{
-                setSearchData(data);
-            }
-            // setIsSearching(false);
-            setSearchData(searchResult)
+    fetch("/db.json")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Could not load data from db.json");
         }
-    // }
-    , [ data, generalFilter, countryFilter])
+        return res.json();
+      })
+      .then((json) => {
+        if (cancelled) return;
+        setRawData(json);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setError(err.message || "Unknown error");
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
 
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
-    useEffect(()=>{
-        let baseData = Array.isArray(searchData)? searchData:data;
-        if(!Array.isArray(baseData)){
-            setDisplayData([]);
-        }
+  // normalize rawData into an array of posts
+  const posts = useMemo(() => {
+    if (!rawData) return [];
+    if (Array.isArray(rawData)) return rawData;
 
-        if(isFiltered){
-            let fr = baseData.filter((data)=>{
-                return(data.jobType.trim().toLowerCase() === "full time");
-            })
-            setDisplayData(fr);
-        }
-        else{
-            // baseData = data;
-            setDisplayData(baseData);
-        }
-    },[data, searchData, isFiltered])
+    // common wrappers
+    if (Array.isArray(rawData.recepies)) return rawData.recepies;
+    if (Array.isArray(rawData.data)) return rawData.data;
+    if (Array.isArray(rawData.results)) return rawData.results;
+    if (Array.isArray(rawData.items)) return rawData.items;
 
-    return ( 
-        <div className="JobPost-container">
-            <PostCard data={displayData} isLoading={isLoading} error={error} />
-        </div>
-    );
-}
+    // fallback: search deeper
+    return findFirstArray(rawData) ?? [];
+  }, [rawData]);
 
-export default JobPosts
+  // apply general & country search
+  const searched = useMemo(() => {
+    if (!posts.length) return [];
+
+    const g = (generalFilter || "").trim().toLowerCase();
+    const c = (countryFilter || "").trim().toLowerCase();
+
+    let out = posts;
+
+    if (g) {
+      out = out.filter((post) => {
+        const name = (post?.firmName || "").toString().toLowerCase();
+        const brief = (post?.jobBreif || "").toString().toLowerCase();
+        return name.includes(g) || brief.includes(g);
+      });
+    }
+
+    if (c) {
+      out = out.filter((post) => {
+        const country = (post?.firmCountry || "").toString().toLowerCase();
+        return country.includes(c);
+      });
+    }
+
+    return out;
+  }, [posts, generalFilter, countryFilter]);
+
+  // final display list (also apply `isFiltered` which filters to full-time)
+  const displayData = useMemo(() => {
+    const base = searched.length ? searched : posts;
+    if (!Array.isArray(base) || !base.length) return [];
+
+    if (isFiltered) {
+      return base.filter(
+        (p) => (p?.jobType || "").toString().trim().toLowerCase() === "full time"
+      );
+    }
+    return base;
+  }, [posts, searched, isFiltered]);
+
+  return (
+    <div className="JobPost-container">
+      <PostCard data={displayData} isLoading={isLoading} error={error} />
+    </div>
+  );
+};
+
+export default JobPosts;

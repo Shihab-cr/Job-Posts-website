@@ -5,7 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { useState, useEffect } from 'react'
+import {useMemo, useState, useEffect } from 'react'
 import SearchMenu from './SearchMenu'
 import { Link, useParams } from 'react-router-dom'
 import JobPosts from './JobPosts'
@@ -20,15 +20,49 @@ const Post = () => {
     const {data, isLoading, error, refetch} = useFetch(`/db.json`);
     const [myPost, setMyPost] = useState(null);
 
-    const selectedPost = ()=>{
-        return data?.find((item)=>{
-            return item.id === id;
-        })
+    const findFirstArray = (obj) => {
+  if (Array.isArray(obj)) return obj;
+  if (obj && typeof obj === "object") {
+    for (const key of Object.keys(obj)) {
+      const found = findFirstArray(obj[key]);
+      if (found) return found;
     }
-    useEffect(()=>{
-        setMyPost(selectedPost());
-    },[data])
+  }
+  return null;
+};
 
+const postsList = useMemo(() => {
+  if (!data) return [];
+  // 1) direct array
+  if (Array.isArray(data)) return data;
+  // 2) common short-cuts
+  if (Array.isArray(data.recepies)) return data.recepies;
+  if (Array.isArray(data.data)) return data.data;
+  if (Array.isArray(data.results)) return data.results;
+  if (Array.isArray(data.items)) return data.items;
+  // 3) fallback: search deeper for first array
+  return findFirstArray(data) ?? [];
+}, [data]);
+
+// set myPost based on id if needed
+useEffect(() => {
+  if (!postsList.length) {
+    setMyPost(null);
+    return;
+  }
+  const found = postsList.find(p => String(p.id) === String(id));
+  setMyPost(found ?? null);
+}, [postsList, id]);
+
+
+    useEffect(() => {
+  if (!postsList.length) {
+    setMyPost(null);
+    return;
+  }
+  const found = postsList.find(p => String(p.id) === String(id));
+  setMyPost(found ?? null);
+}, [postsList, id]);
 
     useEffect(()=>{
         if(darkMode){

@@ -1,12 +1,12 @@
 import Header from "./Header";
 import JobPosts from "./JobPosts";
 
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {HashRouter, Routes, Route} from 'react-router-dom'
 import Post from "./Post";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
     <div className="App">
       <Routes>
         <Route exact path='/' element={<Header/> }/>
@@ -14,7 +14,7 @@ function App() {
       </Routes>
       
     </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
