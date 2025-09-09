@@ -6,21 +6,13 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import {useMemo, useState, useEffect } from 'react'
-import SearchMenu from './SearchMenu'
+
 import { Link, useParams } from 'react-router-dom'
-import JobPosts from './JobPosts'
+
 import useFetch from './useFetch'
 library.add(fas, far, fab)
 
-
-const Post = () => {
-    
-    const {id} = useParams();
-    const [darkMode, setDarkMode] = useState(false);
-    const {data, isLoading, error, refetch} = useFetch(`/db.json`);
-    const [myPost, setMyPost] = useState(null);
-
-    const findFirstArray = (obj) => {
+const findFirstArray = (obj) => {
   if (Array.isArray(obj)) return obj;
   if (obj && typeof obj === "object") {
     for (const key of Object.keys(obj)) {
@@ -31,6 +23,14 @@ const Post = () => {
   return null;
 };
 
+const Post = () => {
+    
+    const {id} = useParams();
+    const [darkMode, setDarkMode] = useState(false);
+    const {data, isLoading, error} = useFetch(`/db.json`);
+    const [myPost, setMyPost] = useState(null);
+
+    
 const postsList = useMemo(() => {
   if (!data) return [];
   // 1) direct array

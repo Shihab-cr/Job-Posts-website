@@ -1,5 +1,5 @@
 import Header from "./Header";
-import JobPosts from "./JobPosts";
+
 
 import {HashRouter, Routes, Route} from 'react-router-dom'
 import Post from "./Post";

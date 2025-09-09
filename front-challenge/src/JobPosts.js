@@ -2,6 +2,18 @@
 import React, { useState, useEffect, useMemo } from "react";
 import PostCard from "./PostCard";
 
+const findFirstArray = (obj) => {
+    if (Array.isArray(obj)) return obj;
+    if (obj && typeof obj === "object") {
+      for (const key of Object.keys(obj)) {
+        const found = findFirstArray(obj[key]);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  
 const JobPosts = ({
   generalFilter = "",
   setGeneralFilter,
@@ -16,16 +28,6 @@ const JobPosts = ({
   const [isLoading, setIsLoading] = useState(false);
 
   // helper: find first array anywhere inside an object
-  const findFirstArray = (obj) => {
-    if (Array.isArray(obj)) return obj;
-    if (obj && typeof obj === "object") {
-      for (const key of Object.keys(obj)) {
-        const found = findFirstArray(obj[key]);
-        if (found) return found;
-      }
-    }
-    return null;
-  };
 
   // fetch once
   useEffect(() => {
